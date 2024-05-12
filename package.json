@@ -1,0 +1,31 @@
+{
+  "name": "audio-visualizer",
+  "version": "1.0.0",
+  "description": "A web app that takes audio input and displays the frequency.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ragibasif/audio-visualizer.git"
+  },
+  "keywords": [
+    "audio",
+    "visualizer",
+    "node",
+    "music"
+  ],
+  "author": "Ragib Asif",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ragibasif/audio-visualizer/issues"
+  },
+  "homepage": "https://github.com/ragibasif/audio-visualizer#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.2.0"
+  }
+}
