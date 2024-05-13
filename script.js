@@ -8,6 +8,7 @@ const durationTimeOfSong = document.getElementById("duration");
 const previousBtn = document.getElementById("previous");
 const playBtn = document.getElementById("play");
 const nextBtn = document.getElementById("next");
+const muteBtn = document.getElementById("mute");
 const image = document.getElementById("image");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
@@ -127,6 +128,23 @@ function changeProgress(event) {
   const clickX = event.offsetX;
   const { duration } = song;
   song.currentTime = (clickX / width) * duration;
+  if (!isPlaying) {
+    scrollBar.style.width = `${(song.currentTime / duration) * 100}%`;
+    const durationMinutes = Math.floor(duration / 60);
+    let durationSeconds = Math.floor(duration % 60);
+    if (durationSeconds < 10) {
+      durationSeconds = `0${durationSeconds}`;
+    }
+    if (durationSeconds) {
+      durationTimeOfSong.textContent = `${durationMinutes}:${durationSeconds}`;
+    }
+    const currentMinutes = Math.floor(song.currentTime / 60);
+    let currentSeconds = Math.floor(song.currentTime % 60);
+    if (currentSeconds < 10) {
+      currentSeconds = `0${currentSeconds}`;
+    }
+    currentTimeOfSong.textContent = `${currentMinutes}:${currentSeconds}`;
+  }
 }
 
 previousBtn.addEventListener("click", previousSong);
@@ -198,9 +216,12 @@ function drawVisualizer() {
       x + barWidth,
       y + barHeight
     );
-    gradient.addColorStop(0, `rgb(0, 0, 255)`); // Blue at the start
-    gradient.addColorStop(colorStopPosition, `rgb(255, 255, 0)`); // Yellow at the peak
-    gradient.addColorStop(1, `rgb(255, 0, 0)`); // Red at the end
+    gradient.addColorStop(0, `rgb(0, 33, 94)`); // Blue at the start
+    gradient.addColorStop(0.25, `rgb(163, 26, 203)`);
+    gradient.addColorStop(colorStopPosition, `rgb(255, 197, 90)`); // Yellow at the peak
+    gradient.addColorStop(0.05, `rgb(255, 118, 206)`);
+    gradient.addColorStop(0.15, `rgb(148, 255, 216)`);
+    gradient.addColorStop(1, `rgb(252, 0, 0)`); // Red at the end
 
     ctx.fillStyle = gradient;
 
