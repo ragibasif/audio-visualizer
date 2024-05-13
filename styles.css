@@ -92,3 +92,8 @@ body {
     left: 29px;
   }
 }
+
+#visualizer {
+  display: none;
+  margin: 20px auto;
+}

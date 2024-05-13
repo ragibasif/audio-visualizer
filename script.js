@@ -1,3 +1,4 @@
+// music player
 // TODO: add volume button for the song
 const song = document.getElementById("song");
 const scrollBarContainer = document.getElementById("scroll-bar-container");
@@ -53,15 +54,30 @@ function playSong() {
   isPlaying = true;
   playBtn.classList.replace("fa-play", "fa-pause");
   song.play();
+  canvas.style.display === "block";
 }
 
 function pauseSong() {
   isPlaying = false;
   playBtn.classList.replace("fa-pause", "fa-play");
   song.pause();
+  canvas.style.display === "none";
 }
 
-playBtn.addEventListener("click", () => (isPlaying ? pauseSong() : playSong()));
+const playOrPause = () => (isPlaying ? pauseSong() : playSong());
+
+const canvasToggler = document.getElementById("visualizer");
+const toggleVisualizer = () => {
+  if (canvas.style.display === "block") {
+    canvas.style.display = "none";
+  } else {
+    canvas.style.display = "block";
+  }
+};
+playBtn.addEventListener("click", () => {
+  playOrPause();
+  toggleVisualizer();
+});
 
 // update song
 function loadSong(currSong) {
@@ -114,10 +130,10 @@ function updateScrollBar(event) {
   }
 }
 
-function changeProgress (event) {
+function changeProgress(event) {
   const width = this.clientWidth;
   const clickX = event.offsetX;
-  const {duration} = song;
+  const { duration } = song;
   song.currentTime = (clickX / width) * duration;
 }
 
@@ -125,4 +141,80 @@ previousBtn.addEventListener("click", previousSong);
 nextBtn.addEventListener("click", nextSong);
 song.addEventListener("timeupdate", updateScrollBar);
 song.addEventListener("ended", nextSong);
-scrollBarContainer.addEventListener('click', changeProgress);
+scrollBarContainer.addEventListener("click", changeProgress);
+
+// audio visualizer
+
+const canvas = document.getElementById("visualizer");
+const ctx = canvas.getContext("2d");
+
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+let analyzer = audioContext.createAnalyser(); // Changed from analyser to analyzer
+let source = audioContext.createMediaElementSource(song);
+
+source.connect(analyzer); // Changed from analyser to analyzer
+analyzer.connect(audioContext.destination);
+
+analyzer.fftSize = 256;
+const bufferLength = analyzer.frequencyBinCount;
+const dataArray = new Uint8Array(bufferLength);
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max) + 3;
+}
+
+let randomN = getRandomInt(250);
+
+function createOrResumeAudioContext() {
+  audioContext.resume();
+}
+function handleUserGesture() {
+  createOrResumeAudioContext();
+}
+
+document.getElementById("play").addEventListener("click", handleUserGesture);
+
+function drawVisualizer() {
+  requestAnimationFrame(drawVisualizer);
+
+  analyzer.getByteFrequencyData(dataArray); // Changed from analyser to analyzer
+
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+  const radius = Math.min(canvas.width, canvas.height) / 2;
+
+  const sliceAngle = (6 * Math.PI) / bufferLength;
+
+  ctx.fillStyle = "(0,0,0)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < bufferLength; i++) {
+    const barHeight = dataArray[i] / 2;
+
+    const x = centerX + Math.cos(sliceAngle * i) * (radius - barHeight);
+    const y = centerY + Math.sin(sliceAngle * i) * (radius - barHeight);
+    const xEnd = centerX + Math.cos(sliceAngle * i) * radius;
+    const yEnd = centerY + Math.sin(sliceAngle * i) * radius;
+
+    const gradient = ctx.createLinearGradient(x, y, xEnd, yEnd);
+    gradient.addColorStop(0, `rgb(${randomN}, 0, 0)`);
+    gradient.addColorStop(0.1, `rgb(${randomN}, 50, 0)`);
+    gradient.addColorStop(0.2, `rgb(${randomN}, 0, 50)`);
+    gradient.addColorStop(0.3, `rgb(${randomN}, 50, 50)`);
+    gradient.addColorStop(0.4, `rgb(50, 0, ${randomN})`);
+    gradient.addColorStop(0.5, `rgb(0, ${randomN}, 0)`);
+    gradient.addColorStop(0.6, `rgb(50, ${randomN}, 0)`);
+    gradient.addColorStop(0.7, `rgb(0, ${randomN}, 50)`);
+    gradient.addColorStop(0.8, `rgb(50, ${randomN}, 50)`);
+    gradient.addColorStop(0.9, `rgb(0, 50, ${randomN})`);
+    gradient.addColorStop(1, `rgb(0, 0, ${randomN})`);
+    ctx.strokeStyle = gradient;
+
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(xEnd, yEnd);
+    ctx.stroke();
+  }
+}
+
+drawVisualizer();
