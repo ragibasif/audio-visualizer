@@ -54,14 +54,14 @@ function playSong() {
   isPlaying = true;
   playBtn.classList.replace("fa-play", "fa-pause");
   song.play();
-  canvas.style.display = "block";
+  // canvas.style.display = "block";
 }
 
 function pauseSong() {
   isPlaying = false;
   playBtn.classList.replace("fa-pause", "fa-play");
   song.pause();
-  canvas.style.display = "none";
+  // canvas.style.display = "none";
 }
 
 const playOrPause = () => (isPlaying ? pauseSong() : playSong());
@@ -144,18 +144,12 @@ let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let analyzer = audioContext.createAnalyser(); // Changed from analyser to analyzer
 let source = audioContext.createMediaElementSource(song);
 
-source.connect(analyzer); // Changed from analyser to analyzer
+source.connect(analyzer);
 analyzer.connect(audioContext.destination);
 
 analyzer.fftSize = 256;
 const bufferLength = analyzer.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max) + 3;
-}
-
-let randomN = getRandomInt(250);
 
 function createOrResumeAudioContext() {
   audioContext.resume();
@@ -166,47 +160,51 @@ function handleUserGesture() {
 
 document.getElementById("play").addEventListener("click", handleUserGesture);
 
+function setupVisualizer() {
+  canvas.width = window.innerWidth * 0.85;
+  canvas.height = window.innerHeight * 0.25;
+}
+
+// Initialize visualizer
+setupVisualizer();
+
+// adjust canvas width on window resize
+window.addEventListener("resize", function () {
+  setupVisualizer();
+});
+
 function drawVisualizer() {
   requestAnimationFrame(drawVisualizer);
 
-  analyzer.getByteFrequencyData(dataArray); // Changed from analyser to analyzer
+  analyzer.getByteFrequencyData(dataArray);
 
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-  const radius = Math.min(canvas.width, canvas.height) / 2;
+  const barWidth = canvas.width / bufferLength;
+  const barHeightMultiplier = canvas.height / 256; // Adjusts the height of the bars based on canvas height
 
-  const sliceAngle = (6 * Math.PI) / bufferLength;
-
-  // ctx.fillStyle = "(0,0,0)";
-  ctx.fillStyle = "transparent";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // Clear the canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < bufferLength; i++) {
-    const barHeight = dataArray[i] / 1;
+    const barHeight = dataArray[i] * barHeightMultiplier;
 
-    const x = centerX + Math.cos(sliceAngle * i) * (radius - barHeight);
-    const y = centerY + Math.sin(sliceAngle * i) * (radius - barHeight);
-    const xEnd = centerX + Math.cos(sliceAngle * i) * radius;
-    const yEnd = centerY + Math.sin(sliceAngle * i) * radius;
+    const x = i * barWidth;
+    const y = canvas.height - barHeight;
 
-    const gradient = ctx.createLinearGradient(x, y, xEnd, yEnd);
-    gradient.addColorStop(0, `rgb(255, 0, 0)`);
-    gradient.addColorStop(0.1, `rgb(${randomN}, 50, 0)`);
-    gradient.addColorStop(0.2, `rgb(${randomN}, 0, 50)`);
-    gradient.addColorStop(0.3, `rgb(238, 130, 238)`);
-    gradient.addColorStop(0.4, `rgb(106, 90, 205)`);
-    gradient.addColorStop(0.5, `rgb(0, 255, 0)`);
-    gradient.addColorStop(0.6, `rgb(50, ${randomN}, 0)`);
-    gradient.addColorStop(0.7, `rgb(0, ${randomN}, 50)`);
-    gradient.addColorStop(0.8, `rgb(255, 165, 0)`);
-    gradient.addColorStop(0.9, `rgb(0, 50, ${randomN})`);
-    gradient.addColorStop(1, `rgb(0, 0, 255)`);
-    ctx.strokeStyle = gradient;
+    // Calculate gradient color stops dynamically based on the audio data
+    const colorStopPosition = dataArray[i] / 255; // Normalize to [0, 1]
+    const gradient = ctx.createLinearGradient(
+      x,
+      y,
+      x + barWidth,
+      y + barHeight
+    );
+    gradient.addColorStop(0, `rgb(0, 0, 255)`); // Blue at the start
+    gradient.addColorStop(colorStopPosition, `rgb(255, 255, 0)`); // Yellow at the peak
+    gradient.addColorStop(1, `rgb(255, 0, 0)`); // Red at the end
 
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(xEnd, yEnd);
-    ctx.stroke();
+    ctx.fillStyle = gradient;
+
+    ctx.fillRect(x, y, barWidth, barHeight);
   }
 }
 
