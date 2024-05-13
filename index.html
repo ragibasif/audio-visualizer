@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Visualizer</title>
-    <link rel="stylesheet" href="./public/styles.css">
-</head>
-<body>
-    <div class="container">
-        <canvas id="visualizer"></canvas>
-        <audio id="audio" controls>
-            <source src="./music/EltonJohnYourSong.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="music-container">
+        <div class="image-container">
+          <img id="image" src="img/bobdylan.jpg" alt="blah" />
+        </div>
+        <h2 id="title">Like A Rolling Stone</h2>
+        <h3 id="artist">Bob Dylan</h3>
+        <audio id="song" src="music/BobDylanLikeARollingStone.mp3"></audio>
+        <div class="scroll-bar-container" id="scroll-bar-container">
+          <div class="scroll-bar" id="scroll-bar"></div>
+          <div class="time-duration-container">
+            <span id="time">0:00</span>
+            <span id="duration">5:59</span>
+          </div>
+        </div>
+        <div class="music-controls-container">
+          <i class="fas fa-backward" id="previous"></i>
+          <i class="fas fa-play" id="play"></i>
+          <i class="fas fa-forward" id="next"></i>
+        </div>
+      </div>
     </div>
-    <script src="./public/script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
