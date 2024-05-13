@@ -54,29 +54,21 @@ function playSong() {
   isPlaying = true;
   playBtn.classList.replace("fa-play", "fa-pause");
   song.play();
-  canvas.style.display === "block";
+  canvas.style.display = "block";
 }
 
 function pauseSong() {
   isPlaying = false;
   playBtn.classList.replace("fa-pause", "fa-play");
   song.pause();
-  canvas.style.display === "none";
+  canvas.style.display = "none";
 }
 
 const playOrPause = () => (isPlaying ? pauseSong() : playSong());
 
 const canvasToggler = document.getElementById("visualizer");
-const toggleVisualizer = () => {
-  if (canvas.style.display === "block") {
-    canvas.style.display = "none";
-  } else {
-    canvas.style.display = "block";
-  }
-};
 playBtn.addEventListener("click", () => {
   playOrPause();
-  toggleVisualizer();
 });
 
 // update song
@@ -185,11 +177,12 @@ function drawVisualizer() {
 
   const sliceAngle = (6 * Math.PI) / bufferLength;
 
-  ctx.fillStyle = "(0,0,0)";
+  // ctx.fillStyle = "(0,0,0)";
+  ctx.fillStyle = "transparent";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < bufferLength; i++) {
-    const barHeight = dataArray[i] / 2;
+    const barHeight = dataArray[i] / 1;
 
     const x = centerX + Math.cos(sliceAngle * i) * (radius - barHeight);
     const y = centerY + Math.sin(sliceAngle * i) * (radius - barHeight);
@@ -197,17 +190,17 @@ function drawVisualizer() {
     const yEnd = centerY + Math.sin(sliceAngle * i) * radius;
 
     const gradient = ctx.createLinearGradient(x, y, xEnd, yEnd);
-    gradient.addColorStop(0, `rgb(${randomN}, 0, 0)`);
+    gradient.addColorStop(0, `rgb(255, 0, 0)`);
     gradient.addColorStop(0.1, `rgb(${randomN}, 50, 0)`);
     gradient.addColorStop(0.2, `rgb(${randomN}, 0, 50)`);
-    gradient.addColorStop(0.3, `rgb(${randomN}, 50, 50)`);
-    gradient.addColorStop(0.4, `rgb(50, 0, ${randomN})`);
-    gradient.addColorStop(0.5, `rgb(0, ${randomN}, 0)`);
+    gradient.addColorStop(0.3, `rgb(238, 130, 238)`);
+    gradient.addColorStop(0.4, `rgb(106, 90, 205)`);
+    gradient.addColorStop(0.5, `rgb(0, 255, 0)`);
     gradient.addColorStop(0.6, `rgb(50, ${randomN}, 0)`);
     gradient.addColorStop(0.7, `rgb(0, ${randomN}, 50)`);
-    gradient.addColorStop(0.8, `rgb(50, ${randomN}, 50)`);
+    gradient.addColorStop(0.8, `rgb(255, 165, 0)`);
     gradient.addColorStop(0.9, `rgb(0, 50, ${randomN})`);
-    gradient.addColorStop(1, `rgb(0, 0, ${randomN})`);
+    gradient.addColorStop(1, `rgb(0, 0, 255)`);
     ctx.strokeStyle = gradient;
 
     ctx.beginPath();
