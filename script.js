@@ -17,34 +17,40 @@ const artist = document.getElementById("artist");
 // TODO: move to a separate json file
 const songs = [
   {
-    songFile: "BobDylanLikeARollingStone.mp3",
-    songName: "Like A Rolling Stone",
-    artistName: "Bob Dylan",
-    imageFile: "bobdylan.jpeg",
+    songFile: "aggressive-break.mp3",
+    songName: "Aggressive Break",
   },
   {
-    songFile: "DavidBowieLifeOnMars.mp3",
-    songName: "Life On Mars",
-    artistName: "David Bowie",
-    imageFile: "davidbowie.jpg",
+    songFile: "breeze-groove.mp3",
+    songName: "Breeze Groove",
   },
   {
-    songFile: "EltonJohnYourSong.mp3",
-    songName: "Your Song",
-    artistName: "Elton John",
-    imageFile: "eltonjohn.jpg",
+    songFile: "electro-summer.mp3",
+    songName: "Electro Summer",
   },
   {
-    songFile: "MichaelJacksonTheWayYouMakeMeFeel.mp3",
-    songName: "The Way You Make Me Feel",
-    artistName: "Michael Jackson",
-    imageFile: "michaeljackson.jpeg",
+    songFile: "garage-days.mp3",
+    songName: "Garage Days",
   },
   {
-    songFile: "QueenDontStopMeNow.mp3",
-    songName: "Don't Stop Me Now",
-    artistName: "Queen",
-    imageFile: "queen.jpeg",
+    songFile: "happy-rock.mp3",
+    songName: "Happy Rock",
+  },
+  {
+    songFile: "powerful-metal.mp3",
+    songName: "Powerful Metal",
+  },
+  {
+    songFile: "sport-rock.mp3",
+    songName: "Sport Rock",
+  },
+  {
+    songFile: "sunrise-groove.mp3",
+    songName: "Sunrise Groove",
+  },
+  {
+    songFile: "upbeat-happy.mp3",
+    songName: "Upbeat Happy",
   },
 ];
 
@@ -55,14 +61,12 @@ function playSong() {
   isPlaying = true;
   playBtn.classList.replace("fa-play", "fa-pause");
   song.play();
-  // canvas.style.display = "block";
 }
 
 function pauseSong() {
   isPlaying = false;
   playBtn.classList.replace("fa-pause", "fa-play");
   song.pause();
-  // canvas.style.display = "none";
 }
 
 const playOrPause = () => (isPlaying ? pauseSong() : playSong());
@@ -75,9 +79,7 @@ playBtn.addEventListener("click", () => {
 // update song
 function loadSong(currSong) {
   title.textContent = currSong.songName;
-  artist.textContent = currSong.artistName;
   song.src = `music/${currSong.songFile}`;
-  image.src = `img/${currSong.imageFile}`;
 }
 
 let songIndex = 0;
@@ -165,7 +167,7 @@ let source = audioContext.createMediaElementSource(song);
 source.connect(analyzer);
 analyzer.connect(audioContext.destination);
 
-analyzer.fftSize = 256;
+analyzer.fftSize = 256; // bar size: higher number = thinner bars
 const bufferLength = analyzer.frequencyBinCount;
 const dataArray = new Uint8Array(bufferLength);
 
@@ -179,8 +181,8 @@ function handleUserGesture() {
 document.getElementById("play").addEventListener("click", handleUserGesture);
 
 function setupVisualizer() {
-  canvas.width = window.innerWidth * 0.85;
-  canvas.height = window.innerHeight * 0.25;
+  canvas.width = window.innerWidth * 0.9;
+  canvas.height = window.innerHeight * 0.5;
 }
 
 // Initialize visualizer
@@ -204,7 +206,6 @@ function drawVisualizer() {
 
   for (let i = 0; i < bufferLength; i++) {
     const barHeight = dataArray[i] * barHeightMultiplier;
-
     const x = i * barWidth;
     const y = canvas.height - barHeight;
 
@@ -216,16 +217,15 @@ function drawVisualizer() {
       x + barWidth,
       y + barHeight
     );
-    gradient.addColorStop(0, `rgb(0, 33, 94)`); // Blue at the start
-    gradient.addColorStop(0.25, `rgb(163, 26, 203)`);
-    gradient.addColorStop(colorStopPosition, `rgb(255, 197, 90)`); // Yellow at the peak
-    gradient.addColorStop(0.05, `rgb(255, 118, 206)`);
-    gradient.addColorStop(0.15, `rgb(148, 255, 216)`);
-    gradient.addColorStop(1, `rgb(252, 0, 0)`); // Red at the end
+    gradient.addColorStop(0, `rgb(110, 33, 194)`); // Blue at the start
+    gradient.addColorStop(colorStopPosition, `rgb(255, 107, 100)`); // Yellow at the peak
+    gradient.addColorStop(1, `rgb(252, 10, 110)`); // Red at the end
 
     ctx.fillStyle = gradient;
 
-    ctx.fillRect(x, y, barWidth, barHeight);
+    // mirror
+    ctx.fillRect(canvas.width / 2 - x, y, barWidth, barHeight);
+    ctx.fillRect(canvas.width / 2 + x, y, barWidth, barHeight);
   }
 }
 

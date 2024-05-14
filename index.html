@@ -15,20 +15,30 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <ul class="navbar-links" id="navbar-links">
+      <li><a href="https://ragibasif.github.io/" target="_blank">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#visualizer">Visualizer</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
     <div class="main-container">
+      <div class="about" id="about">
+        <h1>Audio Visualizer</h1>
+        <h2>Welcome</h2>
+        <p>
+          Enjoy this audio visualizer I created with vanilla JavaScript and
+          HTML/CSS. If you would like me to add any songs, send me a message.
+        </p>
+        <p>*Note: Still a work in progress.</p>
+      </div>
       <div class="music-container">
-        <div class="image-container">
-          <img id="image" src="img/bobdylan.jpeg" alt="blah" />
-        </div>
-
-        <h2 id="title">Like A Rolling Stone</h2>
-        <h3 id="artist">Bob Dylan</h3>
-        <audio id="song" src="music/BobDylanLikeARollingStone.mp3"></audio>
+        <h2 id="title">Aggressive Break</h2>
+        <audio id="song" src="music/aggressive-break.mp3"></audio>
         <div class="scroll-bar-container" id="scroll-bar-container">
           <div class="scroll-bar" id="scroll-bar"></div>
           <div class="time-duration-container">
             <span id="time">0:00</span>
-            <span id="duration">5:59</span>
+            <span id="duration">2:20</span>
           </div>
         </div>
         <div class="music-controls-container">
@@ -38,7 +48,19 @@
         </div>
       </div>
       <div class="visualizer-container">
-        <canvas id="visualizer"></canvas>
+        <canvas id="visualizer" class="visualizer"></canvas>
+      </div>
+      <div class="footer" id="footer">
+        <p>&copy; 2024 Ragib Asif. All Rights Reserved.</p>
+        <a href="https://www.linkedin.com/in/ragibasif/" target="_blank"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+        <a href="https://github.com/ragibasif" target="_blank"
+          ><i class="fa-brands fa-github"></i
+        ></a>
+        <a href="mailto:ragib.asif30@myhunter.cuny.edu"
+          ><i class="fa-solid fa-envelope"></i
+        ></a>
       </div>
     </div>
     <script src="script.js"></script>
