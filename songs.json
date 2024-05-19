@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Aggressive Break",
+    "src": "./music/aggressive-break.mp3",
+    "id": 0
+  },
+  {
+    "name": "Breeze Groove",
+    "src": "./music/breeze-groove.mp3",
+    "id": 1
+  },
+  {
+    "name": "Electro Summer",
+    "src": "./music/electro-summer.mp3",
+
+    "id": 2
+  },
+  {
+    "name": "Garage Days",
+    "src": "./music/garage-days.mp3",
+    "id": 3
+  },
+  {
+    "name": "Happy Rock",
+    "src": "./music/happy-rock.mp3",
+
+    "id": 4
+  },
+  {
+    "name": "Powerful Metal",
+    "src": "./music/powerful-metal.mp3",
+    "id": 5
+  },
+  {
+    "name": "Sport Rock",
+    "src": "./music/sport-rock.mp3",
+    "id": 6
+  },
+  {
+    "name": "Sunrise Groove",
+    "src": "./music/sunrise-groove.mp3",
+    "id": 7
+  },
+  {
+    "name": "Upbeat Happy",
+    "src": "./music/upbeat-happy.mp3",
+    "id": 8
+  }
+]

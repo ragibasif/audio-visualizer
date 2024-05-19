@@ -1,5 +1,4 @@
 // music player
-// TODO: add volume button for the song
 const song = document.getElementById("song");
 const scrollBarContainer = document.getElementById("scroll-bar-container");
 const scrollBar = document.getElementById("scroll-bar");
@@ -12,77 +11,58 @@ const muteBtn = document.getElementById("mute");
 const image = document.getElementById("image");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
+const playlistElement = document.getElementById("playlist");
 
 // array of songs
-// TODO: move to a separate json file
-const songs = [
-  {
-    songFile: "aggressive-break.mp3",
-    songName: "Aggressive Break",
-  },
-  {
-    songFile: "breeze-groove.mp3",
-    songName: "Breeze Groove",
-  },
-  {
-    songFile: "electro-summer.mp3",
-    songName: "Electro Summer",
-  },
-  {
-    songFile: "garage-days.mp3",
-    songName: "Garage Days",
-  },
-  {
-    songFile: "happy-rock.mp3",
-    songName: "Happy Rock",
-  },
-  {
-    songFile: "powerful-metal.mp3",
-    songName: "Powerful Metal",
-  },
-  {
-    songFile: "sport-rock.mp3",
-    songName: "Sport Rock",
-  },
-  {
-    songFile: "sunrise-groove.mp3",
-    songName: "Sunrise Groove",
-  },
-  {
-    songFile: "upbeat-happy.mp3",
-    songName: "Upbeat Happy",
-  },
-];
+
+let isPlaying = false;
+let songs = [];
+
+let songIndex = 0;
+
+fetch("songs.json")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach((track) => {
+      songs.push(track);
+    });
+  })
+  .catch((error) => console.error("Error fetching the JSON data:", error));
 
 // toggle play/pause
-let isPlaying = false;
 
 function playSong() {
-  isPlaying = true;
   playBtn.classList.replace("fa-play", "fa-pause");
+  song.src = `${songs[songIndex].src}`;
   song.play();
+  isPlaying = true;
 }
 
 function pauseSong() {
-  isPlaying = false;
   playBtn.classList.replace("fa-pause", "fa-play");
+  song.src = `${songs[songIndex].src}`;
   song.pause();
+  isPlaying = false;
 }
 
 const playOrPause = () => (isPlaying ? pauseSong() : playSong());
 
-const canvasToggler = document.getElementById("visualizer");
+// const canvasToggler = document.getElementById("visualizer");
 playBtn.addEventListener("click", () => {
   playOrPause();
 });
 
 // update song
-function loadSong(currSong) {
-  title.textContent = currSong.songName;
-  song.src = `music/${currSong.songFile}`;
+function loadSong(index) {
+  if (index >= 0 && index < songs.length) {
+    const track = songs[index];
+    song.src = track.src;
+    updatePlaylistUI();
+  } else {
+    console.error("Invalid track index:", index);
+  }
 }
 
-let songIndex = 0;
 function previousSong() {
   if (songIndex > 0) {
     songIndex--;
@@ -101,6 +81,31 @@ function nextSong() {
   loadSong(songs[songIndex]);
   playSong();
 }
+
+function selectSong(index) {
+  songIndex = index;
+  loadSong(songIndex);
+  playSong();
+}
+
+function updatePlaylistUI() {
+  playlistElement.innerText = "";
+  songs.forEach((track, index) => {
+    const li = document.createElement("li");
+    li.textContent = track.name;
+    li.onclick = () => selectSong(track.id);
+    if (track.id === songIndex) {
+      li.classList.add("active");
+    }
+    playlistElement.appendChild(li);
+  });
+}
+
+loadSong(songIndex);
+updatePlaylistUI();
+window.onload = (event) => {
+  updatePlaylistUI();
+};
 
 // scroll bar/time
 function updateScrollBar(event) {
@@ -155,6 +160,8 @@ song.addEventListener("timeupdate", updateScrollBar);
 song.addEventListener("ended", nextSong);
 scrollBarContainer.addEventListener("click", changeProgress);
 
+// playlist ui
+
 // audio visualizer
 
 const canvas = document.getElementById("visualizer");
@@ -179,19 +186,6 @@ function handleUserGesture() {
 }
 
 document.getElementById("play").addEventListener("click", handleUserGesture);
-
-function setupVisualizer() {
-  canvas.width = window.innerWidth * 0.9;
-  canvas.height = window.innerHeight * 0.5;
-}
-
-// Initialize visualizer
-setupVisualizer();
-
-// adjust canvas width on window resize
-window.addEventListener("resize", function () {
-  setupVisualizer();
-});
 
 function drawVisualizer() {
   requestAnimationFrame(drawVisualizer);
