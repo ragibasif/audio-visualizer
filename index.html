@@ -4,56 +4,43 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Visualizer</title>
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="main-container">
-      <h1>Audio Visualizer</h1>
-      <div class="center-container">
-        <div class="music-container">
-          <h2 id="title"></h2>
+      <header>
+        <h1>Audio Visualizer</h1>
+        <h1>Welcome</h1>
+      </header>
+      <div class="player">
+        <div class="controls">
           <audio id="song"></audio>
-          <div class="scroll-bar-container" id="scroll-bar-container">
-            <div class="scroll-bar" id="scroll-bar"></div>
-            <div class="time-duration-container">
-              <span id="time">0:00</span>
-              <span id="duration">2:20</span>
-            </div>
-          </div>
-          <div class="music-controls-container">
-            <i class="fas fa-backward" id="previous"></i>
-            <i class="fas fa-play" id="play"></i>
-            <i class="fas fa-forward" id="next"></i>
-          </div>
+          <button id="previous">Prev</button>
+          <button id="play">Play</button>
+          <button id="next">Next</button>
+          <button id="mute">Mute</button>
         </div>
-        <div class="visualizer-container">
-          <canvas id="visualizer" class="visualizer"></canvas>
+        <div class="playlist">
+          <ul id="playlist"></ul>
+        </div>
+        <div id="scroll-bar-container">
+          <div id="scroll-bar"></div>
+        </div>
+        <div id="time">0:00</div>
+        <div id="duration">0:00</div>
+        <div class="canvas">
+          <canvas id="visualizer"></canvas>
         </div>
       </div>
-      <div class="playlist">
-        <ul id="playlist"></ul>
-      </div>
-      <div class="footer" id="footer">
-        <p>&copy; 2024 Ragib Asif. All Rights Reserved.</p>
-        <a href="https://www.linkedin.com/in/ragibasif/" target="_blank"
-          ><i class="fa-brands fa-linkedin"></i
-        ></a>
-        <a href="https://github.com/ragibasif" target="_blank"
-          ><i class="fa-brands fa-github"></i
-        ></a>
-        <a href="mailto:ragib.asif30@myhunter.cuny.edu"
-          ><i class="fa-solid fa-envelope"></i
-        ></a>
-      </div>
+
+      <footer>
+        <p>Copyright</p>
+        <a href="">linkedin</a>
+        <a href="">github</a>
+        <a href="">mail</a>
+      </footer>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
   </body>
 </html>
