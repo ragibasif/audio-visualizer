@@ -1,42 +1,22 @@
 [
   {
-    "name": "The Way You Make Me Feel",
-    "src": "./Music/MichaelJacksonTheWayYouMakeMeFeel.mp3",
-    "artist": "Michael Jackson"
+    "name": "Du Hast",
+    "src": "./Music/DuHast.mp3",
+    "artist": "Rammstein"
   },
   {
-    "name": "Like A Rolling Stone",
-    "src": "./Music/BobDylanLikeARollingStone.mp3",
-    "artist": "Bob Dylan"
+    "name": "Ich Will",
+    "src": "./Music/IchWill.mp3",
+    "artist": "Rammstein"
   },
   {
-    "name": "Life On Mars",
-    "src": "./Music/DavidBowieLifeOnMars.mp3",
-    "artist": "David Bowie"
-  },
-  {
-    "name": "Don't Stop Me Now",
-    "src": "./Music/QueenDontStopMeNow.mp3",
-    "artist": "Queen"
-  },
-  {
-    "name": "Your Song",
-    "src": "./Music/EltonJohnYourSong.mp3",
-    "artist": "Elton John"
-  },
-  {
-    "name": "Billie Jean",
-    "src": "./Music/Billie Jean.mp3",
-    "artist": "Michael Jackson"
-  },
-  {
-    "name": "All Along the Watchtower",
-    "src": "./Music/Bob Dylan - All Along the Watchtower (Official Audio).mp3",
-    "artist": "Bob Dylan"
-  },
-  {
-    "name": "It's All Over Now, Baby Blue",
-    "src": "./Music/Bob Dylan - It's All Over Now, Baby Blue (Official Audio).mp3",
-    "artist": "Bob Dylan"
-  }
+    "name": "Sonne",
+    "src": "./Music/Sonne.mp3",
+    "artist": "Rammstein"
+    },
+{
+    "name": "So Muss Sommer",
+    "src": "./Music/SoMussSommer.mp3",
+    "artist": "NOA"
+    }
 ]

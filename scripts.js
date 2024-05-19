@@ -91,7 +91,7 @@ function updatePlaylistUI() {
   playlistElement.innerHTML = "";
   songs.forEach((track, index) => {
     const li = document.createElement("li");
-    li.textContent = track.name;
+    li.textContent = track.name + " - " + track.artist;
     li.onclick = () => selectSong(index);
     if (index === songIndex) {
       li.classList.add("active");
