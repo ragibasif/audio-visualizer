@@ -18,5 +18,10 @@
     "name": "So Muss Sommer",
     "src": "./Music/SoMussSommer.mp3",
     "artist": "NOA"
+    },
+    {
+        "name": "Mein Herz Brennt",
+        "src": "./Music/MeinHerzBrennt.mp3",
+        "artist": "Rammstein"
     }
 ]
