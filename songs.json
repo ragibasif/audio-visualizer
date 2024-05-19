@@ -1,27 +1,52 @@
 [
   {
     "name": "Du Hast",
-    "src": "./Music/DuHast.mp3",
+    "src": "./Music/Rammstein-DuHast.mp3",
     "artist": "Rammstein"
   },
   {
     "name": "Ich Will",
-    "src": "./Music/IchWill.mp3",
+    "src": "./Music/Rammstein-IchWill.mp3",
     "artist": "Rammstein"
   },
   {
     "name": "Sonne",
-    "src": "./Music/Sonne.mp3",
+    "src": "./Music/Rammstein-Sonne.mp3",
     "artist": "Rammstein"
-    },
-{
+  },
+  {
     "name": "So Muss Sommer",
-    "src": "./Music/SoMussSommer.mp3",
+    "src": "./Music/NOA-SoMussSommer.mp3",
     "artist": "NOA"
-    },
-    {
-        "name": "Mein Herz Brennt",
-        "src": "./Music/MeinHerzBrennt.mp3",
-        "artist": "Rammstein"
-    }
+  },
+  {
+    "name": "Mein Herz Brennt",
+    "src": "./Music/Rammstein-MeinHerzBrennt.mp3",
+    "artist": "Rammstein"
+  },
+  {
+    "name": "Johnny Däpp",
+    "src": "./Music/LorenzBüffel-JohnnyDäpp.mp3",
+    "artist": "Lorenz Büffel"
+  },
+  {
+    "name": "Elektrisches Gefühl",
+    "src": "./Music/Juli-ElektrischesGefühl.mp3",
+    "artist": "Juli"
+  },
+  {
+    "name": "Lila Wolken",
+    "src": "./Music/Marteria-Yasha-MissPlatnum-LilaWolken.mp3",
+    "artist": "Marteria, Yasha, MissPlatnum"
+  },
+  {
+    "name": "Lieblingsmensch",
+    "src": "./Music/Namika-Lieblingsmensch.mp3",
+    "artist": "Namika"
+  },
+  {
+    "name": "Halt Dich an mir fest",
+    "src": "./Music/Revolverheld-feat-MartaJandová-HaltDichanmirfest.mp3",
+    "artist": "Revolverheld-feat-MartaJandová"
+  }
 ]
