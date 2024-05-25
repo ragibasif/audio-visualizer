@@ -14,40 +14,96 @@
         <img src="./img/Flag_of_Germany.svg" alt="" srcset="" />
         <p>Contributions by: Ragib, Gigi, Juan</p>
       </header>
-      <div class="player">
-        <div class="controls">
-          <audio id="song"></audio>
-          <button id="previous">Prev</button>
-          <button id="play">Play</button>
-          <button id="next">Next</button>
-          <button id="mute">Mute</button>
+      <div id="player-container">
+        <div class="player">
+          <!-- <div class="controls">
+            <audio id="song"></audio>
+            <button id="previous">Prev</button>
+            <button id="play">Play</button>
+            <button id="next">Next</button>
+            <button id="mute">Mute</button>
+          </div> -->
+          <div class="playlist scrolling-container">
+            <ul id="playlist"></ul>
+          </div>
+          <!-- <div id="scroll-bar-container">
+            <div id="scroll-bar"></div>
+          </div>
+          <div id="time">0:00</div>
+          <div id="duration">0:00</div> -->
         </div>
-        <div class="playlist">
-          <ul id="playlist"></ul>
-        </div>
-        <div id="scroll-bar-container">
-          <div id="scroll-bar"></div>
-        </div>
-        <div id="time">0:00</div>
-        <div id="duration">0:00</div>
-        <div class="canvas">
-          <canvas id="visualizer"></canvas>
+        <div id="canvas-container">
+          <div class="canvas">
+            <canvas id="visualizer"></canvas>
+          </div>
+          <div class="controls">
+            <audio id="song"></audio>
+            <button id="previous">Prev</button>
+            <button id="play">Play</button>
+            <button id="next">Next</button>
+            <button id="mute">Mute</button>
+          </div>
+          <div id="scroll-bar-container">
+            <div id="scroll-bar"></div>
+          </div>
+          <div id="time">0:00</div>
+          <div id="duration">0:00</div>
         </div>
       </div>
 
       <footer>
         <div class="footer-links">
-          <a href="https://www.linkedin.com/in/ragibasif/" target="_blank"
-            >LinkedIn</a
+          <a
+            href="https://www.linkedin.com/in/ragibasif/"
+            target="_blank"
+            class="liquid-button"
           >
+            <span>LinkedIn</span>
+            <svg
+              class="liquid"
+              viewBox="10 10 30 10"
+              preserveAspectRatio="none"
+            >
+              <path
+                class="liquid-path"
+                d="M0,25 Q50,0 100,25 T200,25 V50 H0 Z"
+              />
+            </svg>
+          </a>
           <a
             href="https://github.com/ragibasif/audio-visualizer"
             target="_blank"
-            >GitHub</a
+            class="liquid-button"
           >
-          <a href="mailto:ragib.asif30@myhunter.cuny.edu" target="_blank"
-            >Email</a
+            <span>GitHub</span>
+            <svg
+              class="liquid"
+              viewBox="10 10 30 10"
+              preserveAspectRatio="none"
+            >
+              <path
+                class="liquid-path"
+                d="M0,25 Q50,0 100,25 T200,25 V50 H0 Z"
+              />
+            </svg>
+          </a>
+          <a
+            href="mailto:ragib.asif30@myhunter.cuny.edu"
+            target="_blank"
+            class="liquid-button"
           >
+            <span>Email</span>
+            <svg
+              class="liquid"
+              viewBox="10 10 30 10"
+              preserveAspectRatio="none"
+            >
+              <path
+                class="liquid-path"
+                d="M0,25 Q50,0 100,25 T200,25 V50 H0 Z"
+              />
+            </svg>
+          </a>
         </div>
         <div class="footer-bottom">
           <p>&copy; 2024 Ragib Asif. All rights reserved.</p>

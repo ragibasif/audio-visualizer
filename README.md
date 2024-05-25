@@ -1,5 +1,3 @@
 # audio-visualizer
 
-## Work in progress
-
-![Screenshot of demo](./img/audio-visualizer-screenshot.png)
+![Screenshot of demo](./img/audio-visualizer.png)

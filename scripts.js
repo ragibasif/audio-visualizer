@@ -210,3 +210,15 @@ scrollBarContainer.addEventListener("click", changeProgress);
 window.onload = () => {
   drawVisualizer();
 };
+
+document
+  .querySelector(".liquid-button")
+  .addEventListener("mouseenter", function () {
+    this.querySelector(".liquid-path").style.animationPlayState = "paused";
+  });
+
+document
+  .querySelector(".liquid-button")
+  .addEventListener("mouseleave", function () {
+    this.querySelector(".liquid-path").style.animationPlayState = "running";
+  });
