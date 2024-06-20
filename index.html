@@ -6,8 +6,6 @@
     <title>Audio Visualizer</title>
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/normalize.css" />
   </head>
   <body>
     <div class="main-container">
@@ -29,68 +27,6 @@
           <div class="controls">
             <audio id="song"></audio>
             <button id="previous">Prev</button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              class="svg-filters"
-            >
-              <defs>
-                <filter id="filter-goo-1">
-                  <feGaussianBlur
-                    in="SourceGraphic"
-                    stdDeviation="7"
-                    result="blur"
-                  />
-                  <feColorMatrix
-                    in="blur"
-                    mode="matrix"
-                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-                    result="goo"
-                  />
-                  <feComposite in="SourceGraphic" in2="goo" />
-                </filter>
-              </defs>
-            </svg>
-            <button id="component-1" class="button button--1">
-              Click me
-              <span class="button__container">
-                <span class="circle top-left"></span>
-                <span class="circle top-left"></span>
-                <span class="circle top-left"></span>
-                <span class="button__bg"></span>
-                <span class="circle bottom-right"></span>
-                <span class="circle bottom-right"></span>
-                <span class="circle bottom-right"></span>
-              </span>
-            </button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              version="1.1"
-              class="svg-filters"
-            >
-              <defs>
-                <filter id="filter-music">
-                  <feTurbulence
-                    type="fractalNoise"
-                    baseFrequency="0.000001"
-                    numOctaves="1"
-                    result="warp"
-                  />
-                  <feOffset dx="0" dy="-90" result="warpOffset" />
-                  <feDisplacementMap
-                    xChannelSelector="R"
-                    yChannelSelector="G"
-                    scale="30"
-                    in="SourceGraphic"
-                    in2="warpOffset"
-                  />
-                </filter>
-              </defs>
-            </svg>
-            <button id="component-10" class="button button--10">
-              <span class="button__text">Play</span>
-              <span class="button__bg"></span>
-            </button>
             <button id="play">Play</button>
             <button id="next">Next</button>
             <button id="mute">Mute</button>
@@ -163,7 +99,5 @@
       </footer>
     </div>
     <script src="scripts.js"></script>
-    <script src="js/TweenMax.min.js"></script>
-    <script src="js/main.js"></script>
   </body>
 </html>
