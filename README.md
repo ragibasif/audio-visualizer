@@ -71,7 +71,3 @@ audio-visualizer/
 ## License
 
 This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) License.
-
-## Status of Development
-
-I'm no longer maintaining this.
