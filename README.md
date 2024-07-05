@@ -1,11 +1,11 @@
 # Audio Visualizer
 
-This website allows users to play songs with an engaging visualizer. It offers 
-intuitive controls for playing, pausing, and navigating through songs. 
-The design is aesthetically pleasing, easy to navigate, and fully responsive 
+This website allows users to play songs with an engaging visualizer. It offers
+intuitive controls for playing, pausing, and navigating through songs.
+The design is aesthetically pleasing, easy to navigate, and fully responsive
 across all devices.
 
-[Demo](https://ragibasif.github.io/audio-visualizer/)
+[Demo](https://audiovisualizergch.netlify.app/)
 
 ![App Screenshot](./img/audio-visualizer-screenshot.png)
 
